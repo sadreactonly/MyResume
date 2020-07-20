@@ -1,0 +1,29 @@
+﻿.App {
+    text-align: center;
+    background-color: #282c34;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+}
+
+.about-me-header {
+    margin: 40pt;
+}
+
+.App-header {
+    background-color: #322834;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
