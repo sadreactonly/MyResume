@@ -5,6 +5,7 @@ import SkillsComponent from './components/skills/SkillsComponent';
 import ExperienceComponent from './components/experience/experience.js';
 import HobbiesComponent from './components/hobbies/hobbies.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Contact from './components/contacts/contact';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <ExperienceComponent /><br></br>
             <SkillsComponent /><br></br>
             <HobbiesComponent /><br></br>
+            <Contact/>
         </div>
     );
 }

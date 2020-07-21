@@ -11,6 +11,7 @@ using Microsoft.Extensions.Localization;
 using System.Reflection;
 using Microsoft.Extensions.FileProviders;
 using System.Text;
+using MyResume.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -99,6 +100,16 @@ namespace MyCvService.Controllers
 				}
 			};
 			return new List<Experience>() { x, y }.OrderBy(x => x.StartDate).Reverse();
+		}
+
+		[HttpPost("send-mail")]
+		public IActionResult Register([FromBody] Email email)
+		{
+			//.. code  here 
+			if (email != null)
+				return Ok();
+
+			return NotFound();
 		}
 
 		[HttpGet]
