@@ -14,7 +14,7 @@ function App() {
             <ExperienceComponent /><br></br>
             <SkillsComponent /><br></br>
             <HobbiesComponent /><br></br>
-            <Contact/>
+            <Contact /><br></br>
         </div>
     );
 }

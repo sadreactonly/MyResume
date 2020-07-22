@@ -6,9 +6,14 @@
 .forma {
     position: relative;
     width: 50% !important;
-    background-color: blueviolet;
+    background-color: #7BB992;
     margin: auto;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 10px;
 }
-
+.timeline-header {
+    color: white;
+}
+.myButton {
+    background-color: #7BB992;
+}

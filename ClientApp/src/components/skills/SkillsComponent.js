@@ -31,10 +31,10 @@ class SkillsComponent extends Component {
                     {this.state.skills.map(item =>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work"
-                            contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                            contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                            contentStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
+                            contentArrowStyle={{ borderRight: '7px solid  rgb(15, 93, 44)' }}
                             date=""
-                            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                            iconStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
                           
                         >
                             <h3 className="vertical-timeline-element-title">{item.title}</h3>
@@ -42,7 +42,7 @@ class SkillsComponent extends Component {
                             <ul>
                                 {item.technologies.map(res =>
                                     <li>
-                                        <p>
+                                        <p className="skillName">
                                             {res.name}
                                         </p>
                                         {res.description}

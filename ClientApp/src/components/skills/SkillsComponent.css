@@ -1,7 +1,11 @@
 .Timeline {
-    background-color: #282c34;
+ 
   }
 .timeline-header{
   color: white;
 
+}
+
+.skillName{
+    color:white;
 }

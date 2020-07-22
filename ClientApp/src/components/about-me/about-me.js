@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './about-me.css';
 import Button from 'react-bootstrap/Button';
-import ContactFormModal from '../contact/contact-form.js';
 import axios from 'axios';
 
 
@@ -55,12 +54,10 @@ class AboutMeComponent extends Component {
                 <p>{this.state.name}</p>
                 <p>{this.state.job}</p>
                 <p className="about-me-header">{this.state.summary}</p>
-                <span>
-                    <Button variant="primary" onClick={this.downloadClick} >Download resume</Button>
-                    <Button variant="primary" href="https://github.com/sadreactonly" target="_blank" >Github</Button>
-                    <Button variant="primary" href="https://www.linkedin.com/in/vasic-stefan/" target="_blank" >Linkedin</Button>
-                   
-                    <ContactFormModal/>
+                    <span>
+                        <Button className="myButton" onClick={this.downloadClick} >Download resume</Button>
+                        <Button className="myButton" href="https://github.com/sadreactonly" target="_blank" >Github</Button>
+                        <Button className="myButton" href="https://www.linkedin.com/in/vasic-stefan/" target="_blank" >Linkedin</Button>
                 </span>
 
                 </div>

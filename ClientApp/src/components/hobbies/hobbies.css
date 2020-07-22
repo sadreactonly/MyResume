@@ -1,5 +1,5 @@
 .background {
-    background-color: #282c34;
+    
   }
 
 .inline-div{
@@ -7,7 +7,6 @@
 }
 
 body{
-    background: #3C5377;
     }
 
 /* THE MAINCONTAINER HOLDS EVERYTHING */
@@ -39,34 +38,33 @@ body{
 }
 
 /* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
- .thefront{
-  position: absolute;
-  
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  backface-visibility: hidden;
-  overflow: hidden;
-  background: #3fbf28;
-  color: #000;
+.thefront {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    background: #4D9A6A;
+    color: #000;
 }
 
 /* THE BACK FACE OF THE CARD, WHICH SHOWS ON MOUSEOVER */
-.theback{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  backface-visibility: hidden;
-  overflow: hidden;
-  background: #3fbf28;
-  color: #333;
-  text-align: center;
-  transform: rotateY(180deg);
+.theback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    background: #4D9A6A;
+    color: #333;
+    text-align: center;
+    transform: rotateY(180deg);
 }
 
 

@@ -1,6 +1,6 @@
 .aboutme {
-    background-color: #282c34;
-  }
+    background-color: #003E17;
+}
 
   .profile-image{
     border-radius: 50%;
@@ -10,8 +10,8 @@
   .about-me-header{
     margin: 40pt;
   }
-  .App-header {
-    background-color: #322834;
+.App-header {
+    background-color: #003E17;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,4 +19,7 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-  }
+}
+.myButton {
+    background-color: #7BB992;
+}
