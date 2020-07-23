@@ -165,7 +165,7 @@ namespace MyCvService.Controllers
 
 			var music = new Hobby("3", "data:image/png;base64," + GetImage("MyResume.Assets.dj.png"), "Music", "Learning new instruments and music production.");
 
-			return new List<Hobby>() { sports, electronic, programming, music };
+			return new List<Hobby>() { sports, electronic, programming };
 		}
 
 		[HttpGet]

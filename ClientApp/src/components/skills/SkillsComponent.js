@@ -34,11 +34,10 @@ class SkillsComponent extends Component {
                             contentStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
                             contentArrowStyle={{ borderRight: '7px solid  rgb(15, 93, 44)' }}
                             date=""
-                            iconStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
-                          
+                            iconStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}     
                         >
                             <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                            <h2 className="vertical-timeline-element-subtitle">{item.subtitle}</h2>
+                            <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
                             <ul>
                                 {item.technologies.map(res =>
                                     <li>
