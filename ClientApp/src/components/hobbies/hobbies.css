@@ -98,9 +98,10 @@ body{
     font-size:x-large;
     color: white;
     font-weight: bold;
-    margin: 10pt;
+    margin: auto;
   }
   .explanation{
     color: white;
     font-size: medium !important;
+    margin:auto;
   }

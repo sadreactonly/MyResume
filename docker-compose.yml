@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  myresume:
+    image: ${DOCKER_REGISTRY-}myresume
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+      #- ./data:/data/db
+    ports:
+      - "27017:27017"

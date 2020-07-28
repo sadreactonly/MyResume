@@ -14,7 +14,7 @@ class HobbiesComponent extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/resume/hobbies')
+        axios.get('/api/hobbies')
             .then(res => {
                 const data = res.data;
                 this.setState({ hobbies: data });
@@ -30,7 +30,7 @@ class HobbiesComponent extends Component {
                     Hobbies
                 </h4>
                     {this.state.hobbies.map(item =>
-                        <div className="maincontainer">
+                        <div className="maincontainer" key={item.id}>
                             <div className="thecard">
                                 <div className="thefront">
                                     <img src={`${item.image}`}  className="hobby-image" alt="sports" />

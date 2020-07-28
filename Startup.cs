@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using MyResume.Models;
+using MyResume.Services;
 
 namespace MyResume
 {
@@ -34,7 +37,17 @@ namespace MyResume
 
 			services.AddControllers();
 			services.AddControllersWithViews();
+			services.Configure<MyResumeDatabaseSettings>(
+				Configuration.GetSection(nameof(MyResumeDatabaseSettings)));
 
+			services.AddSingleton<IMyResumeDatabaseSettings>(sp =>
+				sp.GetRequiredService<IOptions<MyResumeDatabaseSettings>>().Value);
+
+			services.AddSingleton<AboutMeService>();
+			services.AddSingleton<ExperienceService>();
+			services.AddSingleton<SkillsService>();
+			services.AddSingleton<HobbiesService>();
+			services.AddSingleton<ProjectsService>();
 			// In production, the React files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{

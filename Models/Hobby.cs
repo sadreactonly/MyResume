@@ -1,23 +1,28 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace MyCvService.Models
 {
 	public class Hobby
 	{
-		public Hobby(string id, string image, string name, string explanation)
-		{
-			Id = id;
-			Image = image;
-			Name = name;
-			Explanation = explanation;
-		}
-
+		
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
+
+		[BsonElement("Image")]
 		public string Image { get; set; }
+
+		[BsonElement("Name")]
 		public string Name { get; set; }
+
+		[BsonElement("Explanation")]
 		public string Explanation { get; set; }
+
 	}
 }

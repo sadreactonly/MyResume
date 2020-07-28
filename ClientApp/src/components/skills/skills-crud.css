@@ -1,0 +1,23 @@
+﻿.contact-form {
+    align-content: center;
+    align-items: center;
+}
+
+.forma {
+    position: relative;
+    width: 50%;
+    background-color: #7BB992;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.newTechDiv {
+    display: inline-block;
+    margin-bottom: 10pt;
+}
+
+.MainDiv {
+    margin-top: 30pt;
+    margin-bottom: 30pt;
+}

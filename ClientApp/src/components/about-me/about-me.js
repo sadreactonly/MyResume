@@ -19,7 +19,7 @@ class AboutMeComponent extends Component {
       }
 
       componentDidMount() {
-          axios.get('/api/resume/about-me')
+          axios.get('/api/aboutme')
             .then(res => {
                 const data = res.data;
                 this.setState({ name: data.name });
@@ -49,15 +49,14 @@ class AboutMeComponent extends Component {
 
             <header className="App-header">
                 <div>
-
                     <img src={`${this.state.image}`}  className="profile-image" alt="logo" />
                 <p>{this.state.name}</p>
                 <p>{this.state.job}</p>
                 <p className="about-me-header">{this.state.summary}</p>
                     <span>
-                        <Button className="myButton" onClick={this.downloadClick} >Download resume</Button>
-                        <Button className="myButton" href="https://github.com/sadreactonly" target="_blank" >Github</Button>
-                        <Button className="myButton" href="https://www.linkedin.com/in/vasic-stefan/" target="_blank" >Linkedin</Button>
+                        <Button variant="secondary" onClick={this.downloadClick} >Download resume</Button>
+                        <Button variant="secondary" href="https://github.com/sadreactonly" target="_blank" >Github</Button>
+                        <Button variant="secondary" href="https://www.linkedin.com/in/vasic-stefan/" target="_blank" >Linkedin</Button>
                 </span>
 
                 </div>

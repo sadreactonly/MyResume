@@ -7,12 +7,18 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <UserSecretsId>c865cc00-3f56-45a3-b25c-8e875dad3db2</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
 
@@ -25,6 +31,8 @@
 
   <ItemGroup>
     <None Remove="Assets\circuit.png" />
+    <None Remove="Assets\DatabaseMock\AboutMe.xml" />
+    <None Remove="Assets\DatabaseMock\Experience.xml" />
     <None Remove="Assets\dj.png" />
     <None Remove="Assets\profileimage.jpg" />
     <None Remove="Assets\programming.png" />
@@ -34,6 +42,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\circuit.png" />
+    <EmbeddedResource Include="Assets\DatabaseMock\AboutMe.xml" />
+    <EmbeddedResource Include="Assets\DatabaseMock\Experience.xml" />
     <EmbeddedResource Include="Assets\dj.png" />
     <EmbeddedResource Include="Assets\profileimage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

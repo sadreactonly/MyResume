@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace MyCvService.Models
 {
 	public class Skills
 	{
+		[BsonId]
+		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
+		[BsonElement("Title")]
 		public string Title { get; set; }
+		[BsonElement("Subtitle")]
 		public string Subtitle { get; set; }
-		public List<Technology> Technologies { get; set; }
+		[BsonElement("Technologies")]
+		public List<string> Technologies { get; set; }
 	}
 
-	public class Technology
-	{
-		public Technology(string id, string name, string description)
-		{
-			Id = id;
-			Name = name;
-			Description = description;
-		}
-
-		public string Id { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
-	}
+	
 }

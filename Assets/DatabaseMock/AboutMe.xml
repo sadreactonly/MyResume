@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AboutMe>
+	<Id>0</Id>
+	<Name>Stefan Vasić</Name>
+	<Job>Software developer</Job>
+	<Summary>Enthusiastic software developer with a true passion for programming. Almost three years of experience in developing, implementing and testing software to meet specific project requirements. Have practical knowledge of programming in C# and different technologies and methodologies.</Summary>
+	<ImageResource>MyResume.Assets.profileimage.jpg</ImageResource>
+</AboutMe>

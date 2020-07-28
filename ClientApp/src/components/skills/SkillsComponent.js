@@ -14,7 +14,7 @@ class SkillsComponent extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/resume/skills')
+        axios.get('/api/skills')
             .then(res => {
                 const data = res.data;
                 this.setState({ skills: data });
@@ -29,7 +29,7 @@ class SkillsComponent extends Component {
                     </h4>
                 <VerticalTimeline >
                     {this.state.skills.map(item =>
-                        <VerticalTimelineElement
+                        <VerticalTimelineElement key={item.id}
                             className="vertical-timeline-element--work"
                             contentStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
                             contentArrowStyle={{ borderRight: '7px solid  rgb(15, 93, 44)' }}
@@ -40,11 +40,11 @@ class SkillsComponent extends Component {
                             <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
                             <ul>
                                 {item.technologies.map(res =>
-                                    <li>
+                                    <li key={res}>
                                         <p className="skillName">
-                                            {res.name}
+                                            {res}
                                         </p>
-                                        {res.description}
+                                        
                                     </li>
 
                                 )}

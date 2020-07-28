@@ -1,6 +1,6 @@
 ﻿.contact-form {
-   align-content:center;
-   align-items:center;
+    align-content: center;
+    align-items: center;
 }
 
 .forma {
@@ -11,6 +11,12 @@
     border-radius: 5px;
     padding: 10px;
 }
+
 .timeline-header {
     color: white;
+}
+.profile-image {
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
 }

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 
 
-class Contact extends React.Component {
+class Contact extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,7 +41,7 @@ class Contact extends React.Component {
                         <label htmlFor="message" className="timeline-header">Message</label>
                         <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
                     </div>
-                    <Button type="submit" className="myButton">
+                    <Button type="submit" variant="secondary">
                         {this.state.spinnerLoading ? 'Sending…' : 'Send'}
                     {this.state.spinnerLoading && <Spinner animation="border" size="sm" />}
                     </Button>

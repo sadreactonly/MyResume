@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
-import './experience.css';
+﻿import React, { Component } from 'react';
+import './projects.css';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
-class ExperienceComponent extends Component {
+
+class ProjectsComponent extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            experience:[]
+            Projects:[]
         }
     }
 
     componentDidMount() {
-        axios.get('/api/experience')
+        axios.get('/api/projects')
             .then(res => {
                 const data = res.data;
-                this.setState({ experience: data });
+                this.setState({ Projects: data });
             })
     }
     render() {
@@ -25,12 +27,12 @@ class ExperienceComponent extends Component {
             <div className="aboutme">
                  <div>
                     <h4 className="timeline-header">
-                        Experience and education
+                        Projects and education
                     </h4>
                 </div>
                 <VerticalTimeline >
-                    {this.state.experience.map(item =>
-
+                    {this.state.Projects.map(item =>
+                        
                         <VerticalTimelineElement key={item.id}
                         className="vertical-timeline-element--work"
                             contentStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
@@ -39,15 +41,13 @@ class ExperienceComponent extends Component {
                             iconStyle={{ background: 'rgb(15, 93, 44)', color: '#fff' }}
                   
                     >
-                        <h3 className="vertical-timeline-element-title">{item.title}</h3>
-                        <h4 className="vertical-timeline-element-subtitle">{item.subtitle}</h4>
-                        <ul>
-                            Project and technologies:
-                              {item.work.map(element =>
-                                  <li key={element}>
-                                       {element}
-                                    </li>)}
-                        </ul>
+                        <h3 className="vertical-timeline-element-title">{item.name}</h3>
+                        <h4 className="vertical-timeline-element-subtitle">{item.technologies}</h4>
+                            <p >
+                                {item.description}
+                            </p>
+                            <Button variant="secondary" href={item.githubLink} target="_blank" >View code</Button>
+
                     </VerticalTimelineElement>
                
                         
@@ -59,4 +59,4 @@ class ExperienceComponent extends Component {
         );
     }
 }
-export default ExperienceComponent;
+export default ProjectsComponent;

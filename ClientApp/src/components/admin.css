@@ -1,17 +1,20 @@
-.aboutme {
-    background-color: #003E17;
+﻿.App {
+    text-align: center;
+    background-color: #297B48;
 }
 
-  .profile-image{
+.profile-image {
     border-radius: 50%;
     width: 240px;
     height: 240px;
-  }
-  .about-me-header{
+}
+
+.about-me-header {
     margin: 40pt;
-  }
+}
+
 .App-header {
-    background-color: #003E17;
+    background-color: #322834;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,4 +22,8 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+}
+
+.App-link {
+    color: #61dafb;
 }
