@@ -52,6 +52,34 @@ class AboutMeCrudComponent extends Component {
     handleSubmit(event)
     {
         event.preventDefault();
+        if (this.state.id != null)
+        {
+            this.update();
+        }
+        else
+        {
+            this.post();
+        }
+
+    }
+
+    post() {
+
+        axios({
+            method: "POST",
+            url: "/api/aboutme/",
+            data: this.state
+        }).then((response) => {
+            if (response.status === 200) {
+               
+            } else {
+                alert("Message failed to send.")
+            }
+        })
+    }
+
+
+    update() {
 
         axios.put(`/api/aboutme/${this.state.id}`, this.state)
             .then((response) => {
@@ -65,7 +93,6 @@ class AboutMeCrudComponent extends Component {
                 }
             })
     }
-
     onImageChange(event) {
         var file = event.target.files[0];
         var reader = new FileReader();
@@ -78,7 +105,7 @@ class AboutMeCrudComponent extends Component {
         return (
             <div>
                 <h2>About me</h2>
-                <img src={`${this.state.image}`} className="profile-image" alt="logo" />
+               
             <form id="contact-form" className="forma" onSubmit={this.handleSubmit.bind(this)} method="POST">
                     <div className="form-group">
                         <label htmlFor="name" className="timeline-header">Name</label>
@@ -95,12 +122,16 @@ class AboutMeCrudComponent extends Component {
                     <div className="newTechDiv">
                         <label  >Image</label>
                         <input type="file" accept="image/png,image/jpeg" className="form-control" onChange={this.onImageChange.bind(this)} />
+                        <img src={`${this.state.image}`} className="pn-image" alt="logo" />
+
                     </div>
+                    <br></br>
                     <Button type="submit" variant="secondary">
                            Save
                     </Button>
                 
                 </form>
+
                 </div>
         );
     }

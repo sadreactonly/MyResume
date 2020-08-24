@@ -171,19 +171,20 @@ class ProjectCrud extends Component {
 
                         </Form.Control>
                     </Form.Group>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Name</label>
                         <input type="text" className="form-control" value={this.state.name} onChange={this.onNameChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Technologies</label>
                         <input type="text" className="form-control" value={this.state.technologies} onChange={this.onTechnologiesChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Description</label>
-                        <input type="text" className="form-control" value={this.state.description} onChange={this.onDescriptionChange.bind(this)} />
+                        <textarea className="form-control" rows="5" value={this.state.description} onChange={this.onDescriptionChange.bind(this)} />
+
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Github link</label>
                         <input type="text" className="form-control" value={this.state.githubLink} onChange={this.onGithubLinkChange.bind(this)} />
                     </div>

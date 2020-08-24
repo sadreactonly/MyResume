@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>c3f16b76-3a21-4286-9804-a9b98db8380c</ProjectGuid>
+    <ProjectGuid>eaec1a23-ad8b-41a5-9ae8-19b59c792679</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>myresume</DockerServiceName>

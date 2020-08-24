@@ -166,16 +166,17 @@ class HobbiesCrud extends Component {
 
                         </Form.Control>
                     </Form.Group>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Name</label>
                         <input type="text" className="form-control" value={this.state.name} onChange={this.onNameChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Description</label>
-                        <input type="text" className="form-control" value={this.state.explanation} onChange={this.onDescriptionChange.bind(this)} />
+                        <textarea className="form-control" rows="5" value={this.state.explanation} onChange={this.onDescriptionChange.bind(this)} />
+
                     </div>
                   
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Image</label>
                         <input type="file" accept="image/png,image/jpeg" className="form-control" onChange={this.onImageChange.bind(this)} />
                     </div>

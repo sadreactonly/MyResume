@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using MyCvService.Models;
+using System;
 
 namespace MyResume.Services
 {
@@ -18,9 +19,18 @@ namespace MyResume.Services
             _Projects = database.GetCollection<Project>(settings.ProjectsCollectionName);
         }
 
-        public List<Project> Get() =>
-            _Projects.Find(Project => true).ToList();
-
+        public List<Project> Get()
+        {
+            try
+            {
+                return _Projects.Find(Project => true).ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Project>();
+            }
+        }
+        
         public Project Get(string id) =>
             _Projects.Find<Project>(Project => Project.Id == id).FirstOrDefault();
 

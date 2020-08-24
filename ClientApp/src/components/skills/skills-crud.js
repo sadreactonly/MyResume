@@ -194,19 +194,19 @@ class SkillsCrud extends Component {
 
                         </Form.Control>
                     </Form.Group>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Title</label>
                         <input type="text" className="form-control" value={this.state.title} onChange={this.onTitleChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Subtitle</label>
                         <input type="text" className="form-control" value={this.state.subtitle} onChange={this.onSubtitleChange.bind(this)} />
                     </div>
                     <br></br>
-                    <div className="newTechDiv">
+                    <div>
                         <input type="text" className="form-control" placeholder="Tecnology name" value={this.state.techName} onChange={this.onNewTechChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <input
                             type="button"
                             value="Add."

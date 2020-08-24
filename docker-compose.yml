@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - mongo
     links:
       - mongo
   mongo:
@@ -16,3 +18,5 @@ services:
       #- ./data:/data/db
     ports:
       - "27017:27017"
+
+

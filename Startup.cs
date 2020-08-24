@@ -91,6 +91,11 @@ namespace MyResume
 				{
 					spa.UseReactDevelopmentServer(npmScript: "start");
 				}
+				else
+				{
+
+					
+				}
 			});
 		}
 	}

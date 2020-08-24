@@ -195,28 +195,28 @@ class ExperienceCrud extends Component {
                             
                         </Form.Control>
                     </Form.Group>
-                    <div className="newTechDiv">
+                    <div>
                         <label >Title</label>
                         <input type="text" className="form-control" value={this.state.title} onChange={this.onTitleChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Subtitle</label>
                         <input type="text" className="form-control" value={this.state.subtitle} onChange={this.onSubtitleChange.bind(this)} />
                     </div>
                     <br></br>
-                    <div className="newTechDiv">
+                    <div>
                         <label  >Start date</label>
                         <input type="number" className="form-control" value={this.state.startDate} onChange={this.onStartDateChange.bind(this)} />
                     </div>
-                    <div className="newTechDiv">
+                    <div>
                         <label>End date</label>
                         <input type="number" className="form-control" value={this.state.endDate} onChange={this.onEndDateChange.bind(this)} />
                     </div>
                     <br></br>
-                    <div className="newTechDiv">
+                    <div>
                         <input type="text" className="form-control" value={this.state.newTech} onChange={this.onNewTechChange.bind(this)}/>
                         </div>
-                    <div className="newTechDiv">
+                    <div>
                         <input
                             type="button"
                             value="Add."
