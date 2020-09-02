@@ -4,26 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using MyCvService.Models;
 using System;
+using MyResume.Helpers;
+using System.Security.Authentication;
 
 namespace MyResume.Services
 {
     public class ProjectsService
     {
         private readonly IMongoCollection<Project> _Projects;
+       // private readonly DatabaseMock databaseMock;
 
         public ProjectsService(IMyResumeDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            MongoClientSettings mongoSettings = MongoClientSettings.FromUrl(new MongoUrl(settings.ConnectionString));
+            mongoSettings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+
+            var mongoClient = new MongoClient(mongoSettings);
+            var database = mongoClient.GetDatabase(settings.DatabaseName);
 
             _Projects = database.GetCollection<Project>(settings.ProjectsCollectionName);
-        }
+		}
 
         public List<Project> Get()
         {
             try
             {
                 return _Projects.Find(Project => true).ToList();
+                //return databaseMock.GetProjectsInformations().ToList();
             }
             catch (Exception)
             {

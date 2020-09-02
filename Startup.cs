@@ -1,13 +1,17 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using MyResume.Infrastructure;
 using MyResume.Models;
 using MyResume.Services;
+using System;
+using System.Text;
 
 namespace MyResume
 {
@@ -25,6 +29,35 @@ namespace MyResume
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+
+			var jwtTokenConfig = Configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfig>();
+			services.AddSingleton(jwtTokenConfig);
+			services.AddAuthentication(x =>
+			{
+				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+				x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+			}).AddJwtBearer(x =>
+			{
+				x.RequireHttpsMetadata = true;
+				x.SaveToken = true;
+				x.TokenValidationParameters = new TokenValidationParameters
+				{
+					ValidateIssuer = true,
+					ValidIssuer = jwtTokenConfig.Issuer,
+					ValidateIssuerSigningKey = true,
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtTokenConfig.Secret)),
+					ValidAudience = jwtTokenConfig.Audience,
+					ValidateAudience = true,
+					ValidateLifetime = true,
+					ClockSkew = TimeSpan.FromMinutes(1)
+				};
+			});
+			services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
+			services.AddHostedService<JwtRefreshTokenCache>();
+			services.AddScoped<IUserService, UserService>();
+
+
 			services.AddCors(options =>
 			{
 				options.AddPolicy(AllowAllOriginsPolicy, // I introduced a string constant just as a label "AllowAllOriginsPolicy"
@@ -53,6 +86,8 @@ namespace MyResume
 			{
 				configuration.RootPath = "ClientApp/build";
 			});
+
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +109,11 @@ namespace MyResume
 			app.UseStaticFiles();
 			app.UseSpaStaticFiles();
 
+
+
 			app.UseRouting();
+			app.UseAuthorization();
+			app.UseAuthentication();
 
 			app.UseEndpoints(endpoints =>
 			{

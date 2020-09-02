@@ -15,12 +15,15 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.8.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
-    <PackageReference Include="MongoDB.Driver.Core" Version="2.10.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.11.1" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,8 +35,6 @@
 
   <ItemGroup>
     <None Remove="Assets\circuit.png" />
-    <None Remove="Assets\DatabaseMock\AboutMe.xml" />
-    <None Remove="Assets\DatabaseMock\Experience.xml" />
     <None Remove="Assets\dj.png" />
     <None Remove="Assets\profileimage.jpg" />
     <None Remove="Assets\programming.png" />
@@ -43,8 +44,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\circuit.png" />
-    <EmbeddedResource Include="Assets\DatabaseMock\AboutMe.xml" />
-    <EmbeddedResource Include="Assets\DatabaseMock\Experience.xml" />
     <EmbeddedResource Include="Assets\dj.png" />
     <EmbeddedResource Include="Assets\profileimage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

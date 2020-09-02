@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MyCvService.Models;
 using System;
+using MyResume.Helpers;
+using System.Security.Authentication;
 
 namespace MyResume.Services
 {
@@ -13,17 +15,20 @@ namespace MyResume.Services
 
         public AboutMeService(IMyResumeDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            MongoClientSettings mongoSettings = MongoClientSettings.FromUrl(new MongoUrl(settings.ConnectionString));
+            mongoSettings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+           
+            var mongoClient = new MongoClient(mongoSettings);
+			var database = mongoClient.GetDatabase(settings.DatabaseName);
 
-            _AboutMes = database.GetCollection<AboutMe>(settings.AboutMeCollectionName);
-        }
+			_AboutMes = database.GetCollection<AboutMe>(settings.AboutMeCollectionName);
+		}
 
         public List<AboutMe> Get()
         {
             try
             {
-                return _AboutMes.Find(AboutMe => true).ToList();
+                return _AboutMes.Find(AboutMes => true).ToList();
             }
             catch (Exception)
             {

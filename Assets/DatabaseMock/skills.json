@@ -1,0 +1,24 @@
+[
+  {
+    "_id": {
+      "$oid": "5f1bc724b8cf29250065e17c"
+    },
+    "Title": "Practical experience",
+    "Subtitle": "Languages and technologies used on previous jobs",
+    "Technologies": [
+      "C#: WPF,.NET, ASP.NET, EntityFramework",
+      "Debugging and testing (Unit, Behavioral, Automated)",
+      "Working with agile methodology, git and CI."
+    ]
+  },{
+  "_id": {
+    "$oid": "5f1bc724b8cf29250065e17d"
+  },
+  "Title": "Worked with/Familiar with:",
+  "Subtitle": "Personal projects and self improvements",
+  "Technologies": [
+      "JavaScript/TypeScript: Got familiar with JS in college (Angular framework). I used ReactJS to build this website as self improvement.",
+      "Xamarin.Android/Xamarin.Forms: I am interested in building android apps, mostly for personal use.",
+      "Databases: SQL, SQLite, MongoDB." 
+  ]
+}]

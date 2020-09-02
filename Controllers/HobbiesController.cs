@@ -1,70 +1,106 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyCvService.Models;
 using MyResume.Services;
 
 namespace MyResume.Controllers
 {
+
+	/// <summary>
+	/// Provides functionality to the '/hobbies' route.
+	/// </summary>
 	[Route("api/hobbies")]
 	[ApiController]
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	public class HobbiesController : ControllerBase
 	{
 
-		private readonly HobbiesService _hobbiesService;
+		private readonly HobbiesService hobbiesService;
 
+		/// <summary>
+		/// Represents contructor of controller.
+		/// </summary>
+		/// <param name="hobbiesService"> Represents instance of HobbyService.</param>
 		public HobbiesController(HobbiesService hobbiesService)
 		{
-			_hobbiesService = hobbiesService;
+			this.hobbiesService = hobbiesService;
 		}
 
+		/// <summary>
+		/// Represents HttpGet method with route "/api/hobbies".
+		/// </summary>
+		/// <returns>
+		/// List of Hobby objects.
+		/// </returns>
 		[HttpGet]
+		[AllowAnonymous]
 		public IEnumerable<Hobby> GetHobbies()
 		{
 
-			return _hobbiesService.Get();
+			return hobbiesService.Get();
 
 		}
-		// GET api/<ValuesController>/5
+
+
+		/// <summary>
+		/// Represents HttpGet method with route "/api/hobbies/{id}".
+		/// </summary>
+		/// <param name="id">
+		/// Represents id of Hobby object.
+		/// </param>
+		/// <returns>
+		/// Single Hobby object with same id.
+		/// </returns>
 		[HttpGet("{id}")]
+		[AllowAnonymous]
 		public Hobby Get(string id)
 		{
-			return _hobbiesService.Get(id);
+			return hobbiesService.Get(id);
 		}
 
+		/// <summary>
+		/// HttpPut method with route "/api/hobbies/{id}".
+		/// </summary>
+		/// <param name="id">Represents ID of object.</param>
+		/// <param name="hobby">Object representation of Hobby class.</param>
 		[HttpPut("{id}")]
-		public void Put(string id, [FromBody] Hobby aboutMe)
+		public void Put(string id, [FromBody] Hobby hobby)
 		{
 			if (IsExist(id))
 			{
-				_hobbiesService.Update(id, aboutMe);
+				hobbiesService.Update(id, hobby);
 			}
 		}
 
+		/// <summary>
+		/// HttpDelete method with route "/api/hobbies/{id}".
+		/// </summary>
+		/// <param name="id">Represents ID of object.</param>
 		[HttpDelete("{id}")]
 		public void Delete(string id)
 		{
-			_hobbiesService.Remove(_hobbiesService.Get(id));
+			hobbiesService.Remove(hobbiesService.Get(id));
 		}
 		[HttpPost]
 
-		public void Post([FromBody] Hobby value)
+		/// <summary>
+		/// HttpPost method with route "/api/hobbies/{hobby}".
+		/// </summary>
+		/// <param name="hobby">Instance of Hobby class.</param>
+		public void Post([FromBody] Hobby hobby)
 		{
-			_hobbiesService.Create(value);
+			hobbiesService.Create(hobby);
 		}
 		private bool IsExist(string id)
 		{
-			var obj = _hobbiesService.Get().Where(x => x.Id == id);
+			var obj = hobbiesService.Get().Where(x => x.Id == id);
 			if (obj != null)
 				return true;
 			return false;
 		}
-
 
 	}
 }

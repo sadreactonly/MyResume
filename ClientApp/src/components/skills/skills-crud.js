@@ -4,6 +4,9 @@ import './skills-crud.css';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
+import SkillsService from "../services/skills.service";
+
+
 class SkillsCrud extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +45,7 @@ class SkillsCrud extends Component {
 
     delete() {
         let id = this.state.id;
-        axios.delete("/api/skills/" + id)
+        SkillsService.delete(id)
             .then(res => {
                 this.getData();
                 this.resetForm();
@@ -53,9 +56,9 @@ class SkillsCrud extends Component {
     }
 
     getData() {
-        axios.get('/api/skills')
+        SkillsService.getData()
             .then(res => {
-                const data = res.data;
+                const data = res;
                 this.setState({ skills: data });
             })
     }
@@ -68,6 +71,7 @@ class SkillsCrud extends Component {
         this.setState({ technologies: tmp });
         this.setState({ techName: ""});
     }
+
     post() {
         let data = {
             id: "",
@@ -75,18 +79,16 @@ class SkillsCrud extends Component {
             subtitle: this.state.subtitle,
             technologies: this.state.technologies,
         }
-        axios({
-            method: "POST",
-            url: "/api/skills/",
-            data: data
-        }).then((response) => {
-            if (response.status === 200) {
-                this.getData();
-                this.resetForm();
-            } else {
-                alert("Message failed to send.")
-            }
-        })
+
+        SkillsService.post(data)
+            .then((response) => {
+                if (response.status === 200) {
+                    this.getData();
+                    this.resetForm();
+                } else {
+                    alert("Message failed to send.")
+                }
+            })
     }
     update() {
         let data = {
@@ -96,17 +98,10 @@ class SkillsCrud extends Component {
             technologies: this.state.technologies,
         }
 
-        axios.put(`/api/skills/${data.id}`, data)
+        SkillsService.update(data)
             .then((response) => {
                 this.getData();
                 this.resetForm();
-
-                if (response.status === 200) {
-                    alert("Message Sent.");
-
-                } else {
-                    alert("Message failed to send.")
-                }
             })
     }
     onNewTechChange(event) {

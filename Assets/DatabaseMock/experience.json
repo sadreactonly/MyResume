@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "5f1bbb8a3ef5453224def040"
+  },
+  "Title": "Developer",
+  "StartDate": 2017,
+  "EndDate": 0,
+  "Subtitle": "Schneider electric DMS, Novi Sad",
+  "Work": [
+    "Worked on company product software UI and back-end services.",
+    "Coding, debbuging and testing product and internal tools for company.",
+    "Working on multiple user stories in VanComm protocol implementation,including a writing Slave for VanComm protocol that is used as company internal tool."
+  ]
+},{
+  "_id": {
+    "$oid": "5f1bbb8c3ef5453224def041"
+  },
+  "Title": "Internship",
+  "StartDate": 2015,
+  "EndDate": 2015,
+  "Subtitle": "Schneider electric DMS, Novi Sad",
+  "Work": [
+    "Worked on small scale company product software back-end services.",
+    "Programm is written in C#, using WCF and EntityFramework.",
+    "Succesfully done, started scoolarship."
+  ]
+},{
+  "_id": {
+    "$oid": "5f1bbb8c3ef5453224def042"
+  },
+  "Title": "Scoolarship",
+  "StartDate": 2015,
+  "EndDate": 0,
+  "Subtitle": "Schneider electric DMS, Novi Sad",
+  "Work": [
+    "Enter scholarship program.",
+    "Different levels of scholarship over the years."
+  ]
+},{
+  "_id": {
+    "$oid": "5f1bbb8c3ef5453224def043"
+  },
+  "Title": "Faculty of Technical Sciences",
+  "StartDate": 2013,
+  "EndDate": 0,
+  "Subtitle": "Novi Sad",
+  "Work": [
+    "Learned and worked programming languages such as: C, C++, C#.",
+    "Worked with databases, web and windows aplications."
+  ]
+}]

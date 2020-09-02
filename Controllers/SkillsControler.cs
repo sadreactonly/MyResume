@@ -1,63 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using MyCvService.Models;
 using MyResume.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyCvService.Controllers
 {
+	/// <summary>
+	/// Provides functionality to the '/skills' route.
+	/// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	public class SkillsController : ControllerBase
 	{
 
-		private readonly SkillsService _skillsService;
+		private readonly SkillsService skillsService;
 
+		/// <summary>
+		/// Represents contructor of controller.
+		/// </summary>
+		/// <param name="expirienceService"> Represents instance of SkillsService.</param>
 		public SkillsController(SkillsService skillsService)
 		{
-			_skillsService = skillsService;
+			this.skillsService = skillsService;
 		}
 
-
+		/// <summary>
+		/// Represents HttpGet method with route "/api/skills".
+		/// </summary>
+		/// <returns>
+		/// List of Skills objects.
+		/// </returns>
 		[HttpGet]
+		[AllowAnonymous]
 		public IEnumerable<Skills> GetSkills()
 		{
-			return _skillsService.Get();
+			return skillsService.Get();
 		}
 
-		// GET api/<ValuesController>/5
+		/// <summary>
+		/// Represents HttpGet method with route "/api/skills/{id}".
+		/// </summary>
+		/// <param name="id">
+		/// Represents id of Skills object.
+		/// </param>
+		/// <returns>
+		/// Single Skills object with same id.
+		/// </returns>
 		[HttpGet("{id}")]
+		[AllowAnonymous]
 		public Skills Get(string id)
 		{
-			return _skillsService.Get(id);
+			return skillsService.Get(id);
 		}
 
+		/// <summary>
+		/// HttpPut method with route "/api/skills/{id}".
+		/// </summary>
+		/// <param name="id">Represents ID of object.</param>
+		/// <param name="skills">Object representation of Skills class.</param>
 		[HttpPut("{id}")]
-		public void Put(string id, [FromBody] Skills aboutMe)
+		public void Put(string id, [FromBody] Skills skills)
 		{
 			if (IsExist(id))
 			{
-				_skillsService.Update(id, aboutMe);
+				skillsService.Update(id, skills);
 			}
 		}
 
+		/// <summary>
+		/// HttpDelete method with route "/api/skills/{id}".
+		/// </summary>
+		/// <param name="id">Represents ID of object.</param>
 		[HttpDelete("{id}")]
 		public void Delete(string id)
 		{
-			_skillsService.Remove(_skillsService.Get(id));
+			skillsService.Remove(skillsService.Get(id));
 		}
+
+		/// <summary>
+		/// HttpPost method with route "/api/skills/{value}".
+		/// </summary>
+		/// <param name="skills">Instance of Skills class.</param>
 		[HttpPost]
 		public void Post(Skills value)
 		{
-			_skillsService.Create(value);
+			skillsService.Create(value);
 		}
 		private bool IsExist(string id)
 		{
-			var obj = _skillsService.Get().Where(x => x.Id == id);
+			var obj = skillsService.Get().Where(x => x.Id == id);
 			if (obj != null)
 				return true;
 			return false;

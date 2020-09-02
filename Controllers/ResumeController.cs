@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
+﻿using System.IO;
 using Microsoft.AspNetCore.Mvc;
-using MyCvService.Models;
 using System.Reflection;
 using System.Text;
 using MyResume.Models;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using System.Xml.Serialization;
-using System.Xml;
-using Microsoft.AspNetCore.Mvc.Diagnostics;
-using MyResume.Helpers;
-using System.Resources;
 using MyResume.Services;
-using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyCvService.Controllers
 {
@@ -33,8 +22,10 @@ namespace MyCvService.Controllers
 		{
 			_supplementService = supplementService;
 		}
+
+
 		[HttpGet]
-		public IActionResult Get()
+		public IActionResult GetCV()
 		{
 			string filePath = "MyResume.Assets.Stefan_Vasić-Software_Developer.pdf";
 

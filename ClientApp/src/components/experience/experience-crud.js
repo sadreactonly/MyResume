@@ -4,6 +4,8 @@ import './experience-crud.css';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
+import ExperienceService from "../services/experience.service";
+
 class ExperienceCrud extends Component {
     constructor(props) {
         super(props);
@@ -43,8 +45,8 @@ class ExperienceCrud extends Component {
 
     delete() {
         let id = this.state.id;
-        console.log(id);
-        axios.delete("/api/experience/" + id)
+
+        ExperienceService.delete(id)
             .then(res => {
                 this.getData();
                 this.resetForm();
@@ -55,9 +57,9 @@ class ExperienceCrud extends Component {
     }
 
     getData() {
-        axios.get('/api/experience')
+        ExperienceService.getData()
             .then(res => {
-                const data = res.data;
+                const data = res;
                 this.setState({ experience: data });
             })
     }
@@ -77,11 +79,9 @@ class ExperienceCrud extends Component {
             endDate: parseInt(this.state.endDate),
             work: this.state.work,
         }
-        axios({
-            method: "POST",
-            url: "/api/experience/",
-            data: data
-        }).then((response) => {
+
+        ExperienceService.post(data)
+            .then((response) => {
             if (response.status === 200) {
                 this.getData();
                 this.resetForm();
@@ -100,19 +100,13 @@ class ExperienceCrud extends Component {
             work:this.state.work,
         }
 
-        axios.put(`/api/experience/${data.id}`, data)
+        ExperienceService.update(data)
             .then((response) => {
                 this.getData();
                 this.resetForm();
-
-                if (response.status === 200) {
-                    alert("Message Sent.");
-
-                } else {
-                    alert("Message failed to send.")
-                }
             })
     }
+
     onNewTechChange(event) {
         this.setState({ newTech: event.target.value });
     }

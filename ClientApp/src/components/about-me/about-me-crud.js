@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import './about-me-crud.css';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
-
+import AboutMeService from "../services/aboutme.service";
 
 class AboutMeCrudComponent extends Component {
 
@@ -14,23 +13,20 @@ class AboutMeCrudComponent extends Component {
             job:'',
             summary:'',
             image:''
-
         };
       }
 
-      componentDidMount() {
-          axios.get('/api/aboutme')
+    componentDidMount() {
+        AboutMeService.getData()
             .then(res => {
-                const data = res.data;
+                const data = res;
                 this.setState({ id: data.id });
                 this.setState({ name: data.name });
                 this.setState({ job: data.job });
                 this.setState({ summary: data.summary });
                 this.setState({image:data.image});
             })
-
     }
-
 
     onNameChange(event) {
         this.setState({ name: event.target.value });
@@ -64,35 +60,22 @@ class AboutMeCrudComponent extends Component {
     }
 
     post() {
-
-        axios({
-            method: "POST",
-            url: "/api/aboutme/",
-            data: this.state
-        }).then((response) => {
+        AboutMeService.post(this.state).then((response) => {
             if (response.status === 200) {
-               
+
             } else {
                 alert("Message failed to send.")
             }
         })
     }
 
-
     update() {
-
-        axios.put(`/api/aboutme/${this.state.id}`, this.state)
-            .then((response) => {
-                console.log(response);
-
-                if (response.status === 200) {
-                    alert("Message Sent.");
-                    this.resetForm()
-                } else {
-                    alert("Message failed to send.")
-                }
+        AboutMeService.update(this.state)
+            .then((response) => { 
+                
             })
     }
+
     onImageChange(event) {
         var file = event.target.files[0];
         var reader = new FileReader();

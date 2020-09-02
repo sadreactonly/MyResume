@@ -4,26 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using MyCvService.Models;
 using System;
+using MyResume.Helpers;
+using System.Security.Authentication;
 
 namespace MyResume.Services
 {
     public class HobbiesService
     {
         private readonly IMongoCollection<Hobby> _Hobbies;
+        //private readonly DatabaseMock databaseMock;
 
         public HobbiesService(IMyResumeDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            MongoClientSettings mongoSettings = MongoClientSettings.FromUrl(new MongoUrl(settings.ConnectionString));
+            mongoSettings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+
+            var mongoClient = new MongoClient(mongoSettings);
+            var database = mongoClient.GetDatabase(settings.DatabaseName);
 
             _Hobbies = database.GetCollection<Hobby>(settings.HobbiesCollectionName);
-        }
+		}
 
         public List<Hobby> Get() 
 	    {
             try
             {
                 return _Hobbies.Find(Hobby => true).ToList();
+                //return databaseMock.GetHobbiesInformations().ToList();
             }
             catch (Exception)
             {

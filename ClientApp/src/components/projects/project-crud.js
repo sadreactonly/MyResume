@@ -1,9 +1,10 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import './project-crud.css';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
+import ProjectsService from "../services/projects.service";
+
 class ProjectCrud extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +43,7 @@ class ProjectCrud extends Component {
 
     delete() {
         let id = this.state.id;
-        axios.delete("/api/projects/" + id)
+        ProjectsService.delete(id)
             .then(res => {
                 this.getData();
                 this.resetForm();
@@ -53,9 +54,9 @@ class ProjectCrud extends Component {
     }
 
     getData() {
-        axios.get('/api/projects')
+        ProjectsService.getData()
             .then(res => {
-                const data = res.data;
+                const data = res;
                 this.setState({ projects: data });
             })
     }
@@ -69,11 +70,9 @@ class ProjectCrud extends Component {
             githubLink: this.state.githubLink,
             technologies: this.state.technologies,
         }
-        axios({
-            method: "POST",
-            url: "/api/projects/",
-            data: data
-        }).then((response) => {
+
+        ProjectsService.post(data)
+            .then((response) => {
             if (response.status === 200) {
                 this.getData();
                 this.resetForm();
@@ -91,17 +90,10 @@ class ProjectCrud extends Component {
             githubLink: this.state.githubLink
         }
 
-        axios.put(`/api/projects/${data.id}`, data)
+        ProjectsService.update(data)
             .then((response) => {
                 this.getData();
                 this.resetForm();
-
-                if (response.status === 200) {
-                    alert("Message Sent.");
-
-                } else {
-                    alert("Message failed to send.")
-                }
             })
     }
 

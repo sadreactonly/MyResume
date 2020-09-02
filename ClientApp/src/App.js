@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainPage  from './components/mainpage.js';
 import AdminPage from './components/admin.js'
+import Login from './components/login/login.js'
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,7 +20,7 @@ function App() {
                         <MainPage />
                     </Route>
                     <Route path="/adminpage">
-                        <AdminPage />
+                        <Login />
                     </Route>
                 </Switch>
             </div>

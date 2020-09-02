@@ -1,9 +1,10 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import './hobbies-crud.css';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
+import HobbiesService from "../services/hobbies.service";
+
 
 class HobbiesCrud extends Component {
     constructor(props) {
@@ -43,22 +44,19 @@ class HobbiesCrud extends Component {
 
     delete() {
         let id = this.state.id;
-        axios.delete("/api/hobbies/" + id)
-            .then(res => {
-                this.getData();
-                this.resetForm();
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+ 
+        HobbiesService.delete(id).then(res => {
+            this.getData();
+            this.resetForm();
+        })
+
     }
 
     getData() {
-        axios.get('/api/hobbies')
-            .then(res => {
-                const data = res.data;
-                this.setState({ hobbies: data });
-            })
+        HobbiesService.getData().then(res => {
+            const data = res;
+            this.setState({ hobbies: data });
+        })
     }
 
     post() {   
@@ -68,13 +66,8 @@ class HobbiesCrud extends Component {
             name: this.state.name,
             explanation: this.state.explanation    
         }
-        console.log(data);
 
-        axios({
-            method: "POST",
-            url: "/api/hobbies/",
-            data: data
-        }).then((response) => {
+        HobbiesService.post(data).then((response) => {
             if (response.status === 200) {
                 this.getData();
                 this.resetForm();
@@ -82,22 +75,22 @@ class HobbiesCrud extends Component {
                 alert("Message failed to send.")
             }
         })
+        
     }
     update() {
-        console.log(this.state.object);
 
-        axios.put(`/api/hobbies/${this.state.object.id}`, this.state.object)
+        let data = {
+            id: this.state.id,
+            image: String(this.state.image),
+            name: this.state.name,
+            explanation: this.state.explanation
+        }
+        console.log(data);
+        HobbiesService.update(data)
             .then((response) => {
                 this.getData();
                 this.resetForm();
-
-                if (response.status === 200) {
-                    alert("Message Sent.");
-
-                } else {
-                    alert("Message failed to send.")
-                }
-            })
+        })
     }
 
     onDescriptionChange(event) {

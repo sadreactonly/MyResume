@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MyCvService.Models;
 using System;
+using MyResume.Helpers;
+using System.Security.Authentication;
 
 namespace MyResume.Services
 {
@@ -13,8 +15,11 @@ namespace MyResume.Services
 
         public ExperienceService(IMyResumeDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            MongoClientSettings mongoSettings = MongoClientSettings.FromUrl(new MongoUrl(settings.ConnectionString));
+            mongoSettings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+
+            var mongoClient = new MongoClient(mongoSettings);
+            var database = mongoClient.GetDatabase(settings.DatabaseName);
 
             _Experiences = database.GetCollection<Experience>(settings.ExperienceCollectionName);
         }
@@ -31,7 +36,7 @@ namespace MyResume.Services
         }
 
         public Experience Get(string id) =>
-            _Experiences.Find<Experience>(Experience => Experience.Id == id).FirstOrDefault();
+            _Experiences.Find(Experience => Experience.Id == id).FirstOrDefault();
 
         public Experience Create(Experience Experience)
         {
