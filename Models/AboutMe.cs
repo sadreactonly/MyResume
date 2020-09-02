@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace MyCvService.Models
 {
@@ -42,6 +43,35 @@ namespace MyCvService.Models
 		{
 			get;set;
 		}
+
+
+		/// <summary>
+		/// Represents binary representation of resume.
+		/// </summary>
+		[BsonElement("Resume")]
+		public string Resume
+		{
+			get; set;
+		}
+		/// <summary>
+		/// Represents link of Github profile.
+		/// </summary>
+		[BsonElement("GithubProfileLink")]
+		public string GithubProfileLink
+		{
+			get;set;
+		}
+
+		/// <summary>
+		/// Represents link of Linkedin profile.
+		/// </summary>
+		[BsonElement("LinkedinProfileLink")]
+		public string LinkedinProfileLink
+		{
+			get; set;
+		}
+
+
 
 	}
 }

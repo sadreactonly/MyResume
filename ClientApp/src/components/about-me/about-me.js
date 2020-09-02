@@ -2,47 +2,38 @@ import React, { Component } from 'react';
 import './about-me.css';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import AboutMeService from "../services/aboutme.service";
 
 
 class AboutMeComponent extends Component {
 
     constructor(props) {
         super(props);
-        this.downloadClick = this.downloadClick.bind(this);
         this.state = {
             name:'',
             job:'',
             summary:'',
-            image:''
-
+            image: '',
+            githubProfileLink: '',
+            linkedinProfileLink: '',
+            resume:''
         };
       }
 
       componentDidMount() {
-          axios.get('/api/aboutme')
-            .then(res => {
-                const data = res.data;
-                this.setState({ name: data.name });
-                this.setState({ job: data.job });
-                this.setState({ summary: data.summary });
-                this.setState({image:data.image});
-            })
-
+          AboutMeService.getData()
+              .then(res => {
+                  const data = res;
+                  this.setState({ id: data.id });
+                  this.setState({ name: data.name });
+                  this.setState({ job: data.job });
+                  this.setState({ summary: data.summary });
+                  this.setState({ image: data.image });
+                  this.setState({ githubProfileLink: data.githubProfileLink });
+                  this.setState({ linkedinProfileLink: data.linkedinProfileLink });
+                  this.setState({ resume: data.resume });
+              })
     }
-
-
-      downloadClick() {
-          axios.get('/api/resume', {responseType: 'arraybuffer'})
-        .then(res => {
-          const url = window.URL.createObjectURL(new Blob([res.data]
-            ,{type: "application/pdf"}))
-          var link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', 'resume.pdf');
-          document.body.appendChild(link);
-          link.click();
-        })
-      }
    
     render() {
         return (
@@ -54,9 +45,9 @@ class AboutMeComponent extends Component {
                 <p>{this.state.job}</p>
                 <p className="about-me-header">{this.state.summary}</p>
                     <span>
-                        <Button variant="secondary" onClick={this.downloadClick} >Download resume</Button>
-                        <Button variant="secondary" href="https://github.com/sadreactonly" target="_blank" >Github</Button>
-                        <Button variant="secondary" href="https://www.linkedin.com/in/vasic-stefan/" target="_blank" >Linkedin</Button>
+                        <Button variant="secondary" href={`${this.state.resume}`} download="StefanVasic_Resume.pdf" >Download resume</Button>
+                        <Button variant="secondary" href={`${this.state.githubProfileLink}`} target="_blank" >Github</Button>
+                        <Button variant="secondary" href={`${this.state.linkedinProfileLink}`} target="_blank" >Linkedin</Button>
                 </span>
 
                 </div>

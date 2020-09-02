@@ -12,7 +12,10 @@ class AboutMeCrudComponent extends Component {
             name:'',
             job:'',
             summary:'',
-            image:''
+            image: '',
+            githubProfileLink: '',
+            linkedinProfileLink: '',
+            resume:''
         };
       }
 
@@ -24,7 +27,10 @@ class AboutMeCrudComponent extends Component {
                 this.setState({ name: data.name });
                 this.setState({ job: data.job });
                 this.setState({ summary: data.summary });
-                this.setState({image:data.image});
+                this.setState({ image: data.image });
+                this.setState({ githubProfileLink: data.githubProfileLink });
+                this.setState({ linkedinProfileLink: data.linkedinProfileLink });
+                this.setState({ resume: data.resume });
             })
     }
 
@@ -40,9 +46,16 @@ class AboutMeCrudComponent extends Component {
         this.setState({ summary: event.target.value });
     }
   
+    onGithubLinkChange(event) {
+        this.setState({ githubProfileLink: event.target.value });
+    }
+
+    onLinkedinLinkChange(event) {
+        this.setState({ linkedinProfileLink: event.target.value });
+    }
 
     resetForm() {
-        this.setState({ name: "", job: "", summary: "", image:"" });
+        this.setState({ name: "", job: "", summary: "", image: "", githubProfileLink: "", linkedinProfileLink:"",resume:""  });
     }
 
     handleSubmit(event)
@@ -83,7 +96,14 @@ class AboutMeCrudComponent extends Component {
         reader.onload = () => this.setState({ image: reader.result })
         reader.readAsDataURL(file);
     }
-   
+
+    onResumeChange(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = () => this.setState({ resume: reader.result })
+        reader.readAsDataURL(file);
+    }
     render() {
         return (
             <div>
@@ -101,6 +121,18 @@ class AboutMeCrudComponent extends Component {
                     <div className="form-group">
                         <label htmlFor="subject" className="timeline-header">Summary</label>
                         <textarea className="form-control" rows="5" value={this.state.summary} onChange={this.onSummaryChange.bind(this)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="githubProfileLink" className="timeline-header">Github</label>
+                        <input type="text" className="form-control" value={this.state.githubProfileLink} onChange={this.onGithubLinkChange.bind(this)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="githubProfileLink" className="timeline-header">Linkedin</label>
+                        <input type="text" className="form-control" value={this.state.linkedinProfileLink} onChange={this.onLinkedinLinkChange.bind(this)} />
+                    </div>
+                    <div className="newTechDiv">
+                        <label >Resume</label>
+                        <input type="file" accept="application/pdf" className="form-control" onChange={this.onResumeChange.bind(this)} />
                     </div>
                     <div className="newTechDiv">
                         <label  >Image</label>

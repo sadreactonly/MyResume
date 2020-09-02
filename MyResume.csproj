@@ -39,7 +39,7 @@
     <None Remove="Assets\profileimage.jpg" />
     <None Remove="Assets\programming.png" />
     <None Remove="Assets\sports.png" />
-    <None Remove="Assets\Stefan_Vasić-Software_Developer.pdf" />
+    <None Remove="Assets\Stefan_Vasić_-_Software_Developer.pdf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,7 +50,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\programming.png" />
     <EmbeddedResource Include="Assets\sports.png" />
-    <EmbeddedResource Include="Assets\Stefan_Vasić-Software_Developer.pdf" />
+    <EmbeddedResource Include="Assets\Stefan_Vasić_-_Software_Developer.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -23,23 +23,6 @@ namespace MyCvService.Controllers
 			_supplementService = supplementService;
 		}
 
-
-		[HttpGet]
-		public IActionResult GetCV()
-		{
-			string filePath = "MyResume.Assets.Stefan_Vasić-Software_Developer.pdf";
-
-			var assembly = Assembly.GetExecutingAssembly();
-
-			using (Stream resourceStream = assembly.GetManifestResourceStream(filePath))
-			{
-				if (resourceStream == null) return null;
-				byte[] fileBytes = new byte[resourceStream.Length];
-				resourceStream.Read(fileBytes, 0, fileBytes.Length);
-				return File(fileBytes, "application/pdf", "CV.pdf");
-			}	
-		}
-
 		
 		[HttpPost("send-mail")]
 		public IActionResult SendEmail([FromBody] Email email)

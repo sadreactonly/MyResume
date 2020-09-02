@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +55,19 @@ namespace MyResume.Controllers
 			{
 				_aboutMeService.Update(id, aboutMe);
 			}
+		}
+		/// <summary>
+		/// HttpGet for resume.
+		/// </summary>
+		/// <returns>Resume PDF</returns>
+		[HttpGet("get-resume")]
+		[AllowAnonymous]
+		public IActionResult GetResume()
+		{
+			var aboutMe = _aboutMeService.Get().FirstOrDefault();
+			byte[] PDFDecoded = Convert.FromBase64String(aboutMe.Resume);
+
+			return File(PDFDecoded, "application/pdf", "CV.pdf");		
 		}
 
 		/// <summary>
