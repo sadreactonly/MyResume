@@ -17,8 +17,6 @@ namespace MyResume.Services
 
         private readonly IDictionary<string, string> _users = new Dictionary<string, string>
         {
-            { "test1", "password1" },
-            { "test2", "password2" },
             { "admin", "securePassword" }
         };
         // inject your database here for user validation
